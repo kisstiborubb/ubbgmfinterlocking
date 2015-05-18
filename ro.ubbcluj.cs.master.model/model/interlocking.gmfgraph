@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ASCII"?>
+<gmfgraph:Canvas xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="interlocking">
+  <figures name="Default">
+    <descriptors name="SegmentFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="SegmentFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="SegmentLabelFigure" text="Segment">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="SegmentConnectorsCompartmentFigure" outline="false"/>
+      </actualFigure>
+      <accessors accessor="getFigureSegmentLabelFigure" figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+      <accessors accessor="getSegmentConnectorsCompartmentFigure" figure="//@figures.0/@descriptors.0/@actualFigure/@children.1"/>
+    </descriptors>
+    <descriptors name="SemaphoreFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="SemaphoreFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="SemaphoreLabelFigure" text="Semaphore">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="SemaphoreConnectorsCompartmentFigure" outline="false"/>
+      </actualFigure>
+      <accessors accessor="getFigureSemaphoreLabelFigure" figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
+      <accessors accessor="getSemaphoreConnectorsCompartmentFigure" figure="//@figures.0/@descriptors.1/@actualFigure/@children.1"/>
+    </descriptors>
+    <descriptors name="SwichFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="SwichFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="SwichLabelFigure" text="Swich">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="SwichConnectorsCompartmentFigure" outline="false"/>
+      </actualFigure>
+      <accessors accessor="getFigureSwichLabelFigure" figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
+      <accessors accessor="getSwichConnectorsCompartmentFigure" figure="//@figures.0/@descriptors.2/@actualFigure/@children.1"/>
+    </descriptors>
+    <descriptors name="InterlockingElementFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="InterlockingElementFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="InterlockingElementLabelFigure" text="InterlockingElement">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="InterlockingElementConnectorsCompartmentFigure" outline="false"/>
+      </actualFigure>
+      <accessors accessor="getFigureInterlockingElementLabelFigure" figure="//@figures.0/@descriptors.3/@actualFigure/@children.0"/>
+      <accessors accessor="getInterlockingElementConnectorsCompartmentFigure" figure="//@figures.0/@descriptors.3/@actualFigure/@children.1"/>
+    </descriptors>
+    <descriptors name="ConnectorFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="ConnectorFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="ConnectorLabelFigure" text="Connector"/>
+      </actualFigure>
+      <accessors accessor="getFigureConnectorLabelFigure" figure="//@figures.0/@descriptors.4/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="InterlockingConnectionFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="InterlockingConnectionFigure" lineWidth="5" lineKind="LINE_DOT"/>
+    </descriptors>
+  </figures>
+  <nodes name="Segment" figure="SegmentFigure"/>
+  <nodes name="Semaphore" figure="SemaphoreFigure"/>
+  <nodes name="Swich" figure="SwichFigure"/>
+  <nodes name="InterlockingElement" figure="InterlockingElementFigure"/>
+  <nodes name="Connector" figure="ConnectorFigure"/>
+  <connections name="InterlockingConnection" figure="InterlockingConnectionFigure"/>
+  <compartments name="SegmentConnectorsCompartment" figure="SegmentFigure" collapsible="true" accessor="//@figures.0/@descriptors.0/@accessors.1"/>
+  <compartments name="SemaphoreConnectorsCompartment" figure="SemaphoreFigure" collapsible="true" accessor="//@figures.0/@descriptors.1/@accessors.1"/>
+  <compartments name="SwichConnectorsCompartment" figure="SwichFigure" collapsible="true" accessor="//@figures.0/@descriptors.2/@accessors.1"/>
+  <compartments name="InterlockingElementConnectorsCompartment" figure="InterlockingElementFigure" collapsible="true" accessor="//@figures.0/@descriptors.3/@accessors.1"/>
+  <labels name="SegmentLabel" figure="SegmentFigure" accessor="//@figures.0/@descriptors.0/@accessors.0"/>
+  <labels name="SemaphoreLabel" figure="SemaphoreFigure" accessor="//@figures.0/@descriptors.1/@accessors.0"/>
+  <labels name="SwichLabel" figure="SwichFigure" accessor="//@figures.0/@descriptors.2/@accessors.0"/>
+  <labels name="InterlockingElementLabel" figure="InterlockingElementFigure" accessor="//@figures.0/@descriptors.3/@accessors.0"/>
+  <labels name="ConnectorLabel" figure="ConnectorFigure" accessor="//@figures.0/@descriptors.4/@accessors.0"/>
+</gmfgraph:Canvas>

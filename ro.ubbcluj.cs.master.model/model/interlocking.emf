@@ -1,0 +1,38 @@
+@namespace(uri="ro.ubblcuj.cs.master.model.interlocking",prefix="interlocking")
+@gmf
+package interlocking;
+
+@gmf.diagram
+class Interlocking{
+	val InterlockingElement[*] elements;	
+	val InterlockingConnection[*] connections;
+} 
+
+
+class Segment extends InterlockingElement{
+} 
+
+class Semaphore extends InterlockingElement{
+} 
+
+class Swich extends InterlockingElement{
+} 
+
+@gmf.node(label = "name")
+class InterlockingElement{
+	attr String name;
+	
+	@gmf.compartment
+	val Connector[*] connectors;
+} 
+
+@gmf.node(label = "name")
+class Connector{
+	attr String name;
+} 
+
+@gmf.link(source="source",target="target",style="dot", width="5")
+class InterlockingConnection {
+	ref Connector source;
+	ref Connector target;	
+}

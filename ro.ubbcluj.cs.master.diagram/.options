@@ -1,0 +1,7 @@
+# Tracing options for the ro.ubbcluj.cs.master.diagram plug-in
+
+# Common issues
+ro.ubbcluj.cs.master.diagram/debug=false
+
+# Visual IDs
+ro.ubbcluj.cs.master.diagram/debug/visualID=false

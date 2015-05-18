@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<!--
+
+-->
+<plugin>
+
+   <extension point="org.eclipse.team.core.fileTypes" id="repo-ftype">
+      <?gmfgen generated="true"?>
+      <fileTypes type="text" extension="interlocking_diagram"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser" id="resource-factory">
+      <?gmfgen generated="true"?>
+      <parser
+         type="interlocking_diagram"
+         class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
+      </parser>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors" id="gmf-editor">
+      <?gmfgen generated="true"?>
+      <editor
+         id="interlocking.diagram.part.InterlockingDiagramEditorID"
+         name="%editorName"
+         icon="icons/obj16/InterlockingDiagramFile.gif"
+         extensions="interlocking_diagram"
+         default="true"
+         class="interlocking.diagram.part.InterlockingDiagramEditor"
+         matchingStrategy="interlocking.diagram.part.InterlockingMatchingStrategy"
+         contributorClass="interlocking.diagram.part.InterlockingDiagramActionBarContributor">
+      </editor>
+   </extension>
+   
+   <extension point="org.eclipse.ui.contexts" id="ui-context">
+      <?gmfgen generated="true"?>
+      <context
+         description="%context.description"
+         id="interlocking.diagram.ui.diagramContext"
+         name="%context.name"
+         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+      </context>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards" id="creation-wizard">
+      <?gmfgen generated="true"?>
+  	  <wizard
+  	     name="%newWizardName"
+  	     icon="icons/obj16/InterlockingDiagramFile.gif"
+  	     category="org.eclipse.ui.Examples"
+  	     class="interlocking.diagram.part.InterlockingCreationWizard"
+  	     id="interlocking.diagram.part.InterlockingCreationWizardID">
+  	  	 <description>%newWizardDesc</description>  
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.popupMenus" id="init-diagram-action">
+      <?gmfgen generated="true"?>
+      <objectContribution
+            id="ro.ubbcluj.cs.master.diagram.InitDiagram"
+            nameFilter="*.interlocking"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               label="%initDiagramActionLabel"
+               class="interlocking.diagram.part.InterlockingInitDiagramFileAction"
+               menubarPath="additions"
+               enablesFor="1"
+               id="ro.ubbcluj.cs.master.diagram.InitDiagramAction">
+         </action>
+      </objectContribution>
+   </extension>
+	
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
+      <?gmfgen generated="true"?>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
+         id="InterlockingPresentation">
+         <Priority name="Lowest"/>
+         <ViewId id="interlocking.diagram.part.InterlockingDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="delete"/>
+            </ElementType>
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
+               <GlobalActionId actionId="save"/>
+            </ElementType>
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="save">
+               </GlobalActionId>
+            </ElementType>        
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.printing.render.providers.DiagramWithPrintGlobalActionHandlerProvider"
+         id="InterlockingPresentationPrint">
+         <Priority name="Lowest"/>
+         <ViewId id="interlocking.diagram.part.InterlockingDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="print"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
+         id="InterlockingPresentationIDE">
+         <Priority name="Lowest"/>
+         <ViewId id="interlocking.diagram.part.InterlockingDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="bookmark"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+            class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
+            id="InterlockingRender">
+         <Priority name="Lowest"/>
+         <ViewId id="interlocking.diagram.part.InterlockingDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="cut"/>
+               <GlobalActionId actionId="copy"/>
+               <GlobalActionId actionId="paste"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+   </extension>
+
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
+      <?gmfgen generated="true"?>
+      <MarkerNavigationProvider class="interlocking.diagram.providers.InterlockingMarkerNavigationProvider">
+         <MarkerType name="ro.ubbcluj.cs.master.diagram.diagnostic"/>
+         <Priority name="Lowest"/>
+      </MarkerNavigationProvider>
+   </extension>
+
+   <extension id="diagnostic" name="Interlocking Plugin problems" point="org.eclipse.core.resources.markers">
+      <?gmfgen generated="true"?>
+      <super type="org.eclipse.core.resources.problemmarker"/>
+      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
+      <persistent value="true"/>
+   </extension>   
+
+   <extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="interlocking.diagram.providers.InterlockingValidationDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
+         <context decoratorTargets="PRIMARY_VIEW"/>
+      </decoratorProvider>
+   </extension>
+
+   <extension point="org.eclipse.core.runtime.preferences" id="prefs">
+      <?gmfgen generated="true"?>
+      <initializer class="interlocking.diagram.preferences.DiagramPreferenceInitializer"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.preferencePages" id="prefpages">
+      <?gmfgen generated="true"?>
+      <page
+            id="ro.ubbcluj.cs.master.diagram.general"
+            name="%prefpage.ro.ubbcluj.cs.master.diagram.general"
+            class="interlocking.diagram.preferences.DiagramGeneralPreferencePage">
+      </page>
+      <page
+            id="ro.ubbcluj.cs.master.diagram.appearance"
+            name="%prefpage.ro.ubbcluj.cs.master.diagram.appearance"
+            category="ro.ubbcluj.cs.master.diagram.general"
+            class="interlocking.diagram.preferences.DiagramAppearancePreferencePage">
+      </page>
+      <page
+            id="ro.ubbcluj.cs.master.diagram.connections"
+            name="%prefpage.ro.ubbcluj.cs.master.diagram.connections"
+            category="ro.ubbcluj.cs.master.diagram.general"
+            class="interlocking.diagram.preferences.DiagramConnectionsPreferencePage">
+      </page>
+      <page
+            id="ro.ubbcluj.cs.master.diagram.printing"
+            name="%prefpage.ro.ubbcluj.cs.master.diagram.printing"
+            category="ro.ubbcluj.cs.master.diagram.general"
+            class="interlocking.diagram.preferences.DiagramPrintingPreferencePage">
+      </page>
+      <page
+            id="ro.ubbcluj.cs.master.diagram.rulersAndGrid"
+            name="%prefpage.ro.ubbcluj.cs.master.diagram.rulersAndGrid"
+            category="ro.ubbcluj.cs.master.diagram.general"
+            class="interlocking.diagram.preferences.DiagramRulersAndGridPreferencePage">
+      </page>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor" id="prop-contrib">
+      <?gmfgen generated="true"?>
+      <propertyContributor
+            contributorId="ro.ubbcluj.cs.master.diagram"
+            labelProvider="interlocking.diagram.sheet.InterlockingSheetLabelProvider">
+         <propertyCategory category="domain"/>
+         <propertyCategory category="visual"/>
+         <propertyCategory category="extra"/>
+      </propertyContributor>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyTabs" id="proptabs">
+      <?gmfgen generated="true"?>   
+      <propertyTabs contributorId="ro.ubbcluj.cs.master.diagram">
+         <propertyTab
+             category="visual"
+             id="property.tab.AppearancePropertySection"
+             label="%tab.appearance"/>
+          <propertyTab
+             category="visual"
+             id="property.tab.DiagramPropertySection"
+             label="%tab.diagram"/>
+          <propertyTab
+             category="domain"
+             id="property.tab.domain"
+             label="%tab.domain"/>
+      </propertyTabs>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertySections" id="propsections">
+      <?gmfgen generated="true"?>   
+      <propertySections contributorId="ro.ubbcluj.cs.master.diagram">
+         <propertySection id="property.section.ConnectorAppearancePropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ConnectionEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ConnectionAppearancePropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>
+         <propertySection id="property.section.ShapeColorAndFontPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ShapeColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection> 
+         <propertySection id="property.section.DiagramColorsAndFontsPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.DiagramColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>     
+         <propertySection id="property.section.RulerGridPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.grid.RulerGridPropertySection" 
+            tab="property.tab.DiagramPropertySection">
+         </propertySection>     
+         <propertySection
+            id="property.section.domain" 
+            tab="property.tab.domain"
+            class="interlocking.diagram.sheet.InterlockingPropertySection">
+            <input type="org.eclipse.gmf.runtime.notation.View"/>
+            <input type="org.eclipse.gef.EditPart"/>
+            <input type="interlocking.diagram.navigator.InterlockingAbstractNavigatorItem"/>
+         </propertySection>
+      </propertySections>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
+      <?gmfgen generated="true"?>
+      <viewProvider class="interlocking.diagram.providers.InterlockingViewProvider">
+         <Priority name="Lowest"/>
+         <object id="referencing-diagrams" class="org.eclipse.gmf.runtime.notation.Diagram">
+            <method name="getType()" value="interlocking"/>
+         </object>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" containerViews="referencing-diagrams"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Interlocking"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2002,2003,2004,3001"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001"/>
+      </viewProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
+      <?gmfgen generated="true"?>
+      <editpartProvider class="interlocking.diagram.providers.InterlockingEditPartProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
+            <method name="getType()" value="Interlocking"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
+            <method name="getType()" value="2001,2002,2003,2004,3001"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
+            <method name="getType()" value="4001"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
+            <method name="getType()" value="5002,5003,5004,5005,5001"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
+            <method name="getType()" value="7001,7002,7003,7004"/>
+         </object>
+         <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
+      </editpartProvider>
+   </extension>
+
+   
+   <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
+      <?gmfgen generated="true"?>
+      <modelingAssistantProvider class="interlocking.diagram.providers.assistants.InterlockingModelingAssistantProviderOfInterlockingEditPart">
+         <Priority name="Lowest"/>
+         <object class="interlocking.diagram.edit.parts.InterlockingEditPart" id="Interlocking_1000"/>
+         <context elements="Interlocking_1000"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="interlocking.diagram.providers.assistants.InterlockingModelingAssistantProviderOfSegmentEditPart">
+         <Priority name="Lowest"/>
+         <object class="interlocking.diagram.edit.parts.SegmentEditPart" id="Segment_2001"/>
+         <context elements="Segment_2001"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="interlocking.diagram.providers.assistants.InterlockingModelingAssistantProviderOfSemaphoreEditPart">
+         <Priority name="Lowest"/>
+         <object class="interlocking.diagram.edit.parts.SemaphoreEditPart" id="Semaphore_2002"/>
+         <context elements="Semaphore_2002"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="interlocking.diagram.providers.assistants.InterlockingModelingAssistantProviderOfSwichEditPart">
+         <Priority name="Lowest"/>
+         <object class="interlocking.diagram.edit.parts.SwichEditPart" id="Swich_2003"/>
+         <context elements="Swich_2003"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="interlocking.diagram.providers.assistants.InterlockingModelingAssistantProviderOfInterlockingElementEditPart">
+         <Priority name="Lowest"/>
+         <object class="interlocking.diagram.edit.parts.InterlockingElementEditPart" id="InterlockingElement_2004"/>
+         <context elements="InterlockingElement_2004"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="interlocking.diagram.providers.assistants.InterlockingModelingAssistantProviderOfConnectorEditPart">
+         <Priority name="Lowest"/>
+         <object class="interlocking.diagram.edit.parts.ConnectorEditPart" id="Connector_3001"/>
+         <context elements="Connector_3001"/>
+      </modelingAssistantProvider>
+      
+   </extension>
+
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
+      <?gmfgen generated="true"?>
+      <IconProvider class="interlocking.diagram.providers.InterlockingIconProvider">
+         <Priority name="Low"/>
+      </IconProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
+      <?gmfgen generated="true"?>
+      <ParserProvider class="interlocking.diagram.providers.InterlockingParserProvider">
+         <Priority name="Lowest"/>
+      </ParserProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders" id="decorator-provider">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="interlocking.diagram.providers.InterlockingShortcutsDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)" id="generated-top-nodes">
+            <method name="getType()" value="2001,2002,2003,2004"/>
+         </object>
+         <context decoratorTargets="generated-top-nodes"/>
+      </decoratorProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
+      <?gmfgen generated="true"?>
+      <metamodel nsURI="ro.ubblcuj.cs.master.model.interlocking">
+         <metamodelType
+               id="ro.ubbcluj.cs.master.diagram.Interlocking_1000"
+               name="%metatype.name.Interlocking_1000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Interlocking"
+               edithelper="interlocking.diagram.edit.helpers.InterlockingEditHelper">
+            <param name="semanticHint" value="1000"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="ro.ubblcuj.cs.master.model.interlocking">
+         <metamodelType
+               id="ro.ubbcluj.cs.master.diagram.Segment_2001"
+               name="%metatype.name.Segment_2001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Segment"
+               edithelper="interlocking.diagram.edit.helpers.SegmentEditHelper">
+            <param name="semanticHint" value="2001"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="ro.ubblcuj.cs.master.model.interlocking">
+         <metamodelType
+               id="ro.ubbcluj.cs.master.diagram.Semaphore_2002"
+               name="%metatype.name.Semaphore_2002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Semaphore"
+               edithelper="interlocking.diagram.edit.helpers.SemaphoreEditHelper">
+            <param name="semanticHint" value="2002"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="ro.ubblcuj.cs.master.model.interlocking">
+         <metamodelType
+               id="ro.ubbcluj.cs.master.diagram.Swich_2003"
+               name="%metatype.name.Swich_2003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Swich"
+               edithelper="interlocking.diagram.edit.helpers.SwichEditHelper">
+            <param name="semanticHint" value="2003"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="ro.ubblcuj.cs.master.model.interlocking">
+         <metamodelType
+               id="ro.ubbcluj.cs.master.diagram.InterlockingElement_2004"
+               name="%metatype.name.InterlockingElement_2004"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="InterlockingElement"
+               edithelper="interlocking.diagram.edit.helpers.InterlockingElementEditHelper">
+            <param name="semanticHint" value="2004"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="ro.ubblcuj.cs.master.model.interlocking">
+         <metamodelType
+               id="ro.ubbcluj.cs.master.diagram.Connector_3001"
+               name="%metatype.name.Connector_3001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Connector"
+               edithelper="interlocking.diagram.edit.helpers.ConnectorEditHelper">
+            <param name="semanticHint" value="3001"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="ro.ubblcuj.cs.master.model.interlocking">
+         <metamodelType
+               id="ro.ubbcluj.cs.master.diagram.InterlockingConnection_4001"
+               name="%metatype.name.InterlockingConnection_4001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="InterlockingConnection"
+               edithelper="interlocking.diagram.edit.helpers.InterlockingConnectionEditHelper">
+            <param name="semanticHint" value="4001"/>
+         </metamodelType>
+      </metamodel>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
+      <?gmfgen generated="true"?>
+      <clientContext id="ro.ubbcluj.cs.master.diagram.TypeContext">
+         <enablement>
+            <test
+               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
+               value="ro.ubbcluj.cs.master.diagram.EditingDomain"/>
+         </enablement>
+      </clientContext> 
+      <binding context="ro.ubbcluj.cs.master.diagram.TypeContext">
+         <elementType ref="ro.ubbcluj.cs.master.diagram.Interlocking_1000"/>
+         <elementType ref="ro.ubbcluj.cs.master.diagram.Segment_2001"/>
+         <elementType ref="ro.ubbcluj.cs.master.diagram.Semaphore_2002"/>
+         <elementType ref="ro.ubbcluj.cs.master.diagram.Swich_2003"/>
+         <elementType ref="ro.ubbcluj.cs.master.diagram.InterlockingElement_2004"/>
+         <elementType ref="ro.ubbcluj.cs.master.diagram.Connector_3001"/>
+         <elementType ref="ro.ubbcluj.cs.master.diagram.InterlockingConnection_4001"/>
+         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+      </binding>
+   </extension>
+	   <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isURIEditorInput">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="ro.ubbcluj.cs.master.diagram.URIEditorInputPropertyTester"
+           type="org.eclipse.emf.common.ui.URIEditorInput"
+           namespace="ro.ubbcluj.cs.master.diagram"
+           properties="isURIEditorInput"
+           class="interlocking.diagram.part.InterlockingUriEditorInputTester">
+       </propertyTester>
+   </extension>
+
+	   <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isShortcut">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="ro.ubbcluj.cs.master.diagram.ShortcutPropertyTester"
+           type="org.eclipse.gmf.runtime.notation.View"
+           namespace="ro.ubbcluj.cs.master.diagram"
+           properties="isShortcut"
+           class="interlocking.diagram.part.InterlockingShortcutPropertyTester">
+       </propertyTester>
+   </extension>
+
+	   <extension point="org.eclipse.ui.navigator.viewer" id="navigator-viewbinding">
+      <?gmfgen generated="true"?>
+      <viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <contentExtension pattern="ro.ubbcluj.cs.master.diagram.resourceContent"/>
+			<contentExtension pattern="ro.ubbcluj.cs.master.diagram.domainResourceContent"/>
+            <contentExtension pattern="ro.ubbcluj.cs.master.diagram.navigatorLinkHelper"/>
+         </includes>
+      </viewerContentBinding>
+      <viewerActionBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <actionExtension pattern="ro.ubbcluj.cs.master.diagram.navigatorActionProvider"/>
+         </includes>
+      </viewerActionBinding>
+   </extension>
+
+   <extension point="org.eclipse.ui.navigator.navigatorContent" id="navigator-content">
+      <?gmfgen generated="true"?>
+      <navigatorContent
+            id="ro.ubbcluj.cs.master.diagram.resourceContent" 
+            name="%navigatorContentName" 
+            priority="normal" 
+            contentProvider="interlocking.diagram.navigator.InterlockingNavigatorContentProvider" 
+            labelProvider="interlocking.diagram.navigator.InterlockingNavigatorLabelProvider"
+            icon="icons/obj16/InterlockingDiagramFile.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="interlocking_diagram"/>
+               </and>
+               <instanceof value="interlocking.diagram.navigator.InterlockingAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="ro.ubbcluj.cs.master.diagram.isShortcut"/>
+           	   </adapt>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <or>
+         	   <instanceof value="interlocking.diagram.navigator.InterlockingAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="ro.ubbcluj.cs.master.diagram.isShortcut"/>
+           	   </adapt>
+            </or>
+         </possibleChildren>
+         <commonSorter 
+               id="ro.ubbcluj.cs.master.diagram.navigatorSorter" 
+               class="interlocking.diagram.navigator.InterlockingNavigatorSorter">
+            <parentExpression>
+               <or>
+	              <and>
+    	             <instanceof value="org.eclipse.core.resources.IFile"/>
+        	         <test property="org.eclipse.core.resources.extension" value="interlocking_diagram"/>
+                  </and>
+                  <instanceof value="interlocking.diagram.navigator.InterlockingAbstractNavigatorItem"/>
+               </or>
+            </parentExpression>
+         </commonSorter>
+      </navigatorContent>
+      <navigatorContent
+            id="ro.ubbcluj.cs.master.diagram.domainResourceContent" 
+            name="%domainNavigatorContentName" 
+            priority="normal" 
+            contentProvider="interlocking.diagram.navigator.InterlockingDomainNavigatorContentProvider" 
+            labelProvider="interlocking.diagram.navigator.InterlockingDomainNavigatorLabelProvider"
+            icon="icons/obj16/InterlockingDiagramFile.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="interlocking"/>
+               </and>
+               <instanceof value="interlocking.diagram.navigator.InterlockingDomainNavigatorItem"/>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <instanceof value="interlocking.diagram.navigator.InterlockingDomainNavigatorItem"/>
+         </possibleChildren>
+      </navigatorContent>
+      <actionProvider
+            id="ro.ubbcluj.cs.master.diagram.navigatorActionProvider"
+            class="interlocking.diagram.navigator.InterlockingNavigatorActionProvider">
+         <enablement>
+            <or>
+               <instanceof value="interlocking.diagram.navigator.InterlockingAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="ro.ubbcluj.cs.master.diagram.isShortcut"/>
+           	   </adapt>
+            </or>
+         </enablement>
+      </actionProvider>
+   </extension>
+   
+	   <extension point="org.eclipse.ui.navigator.linkHelper" id="navigator-linkhelper">
+      <?gmfgen generated="true"?>
+      <linkHelper
+            id="ro.ubbcluj.cs.master.diagram.navigatorLinkHelper"
+            class="interlocking.diagram.navigator.InterlockingNavigatorLinkHelper">
+         <editorInputEnablement>
+            <and>
+               <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
+               <test property="ro.ubbcluj.cs.master.diagram.isURIEditorInput"/>
+            </and>
+         </editorInputEnablement>
+         <selectionEnablement>
+            <instanceof value="interlocking.diagram.navigator.InterlockingAbstractNavigatorItem"/>
+         </selectionEnablement>
+      </linkHelper>
+   </extension>
+   <extension point="org.eclipse.ui.commands" id="update-cmd">
+      <?gmfgen generated="true"?>
+      <command
+         categoryId="org.eclipse.ui.category.edit"
+         defaultHandler="interlocking.diagram.part.InterlockingDiagramUpdateCommand"
+         description="%update.diagram.description"
+         id="interlocking.diagram.updateDiagram"
+         name="%update.diagram.name"/>
+   </extension>
+   
+   <extension point="org.eclipse.ui.bindings" id="update-cmd-binding">
+      <?gmfgen generated="true"?>
+      <key 
+         commandId="interlocking.diagram.updateDiagram"
+         contextId="interlocking.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="F5"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.menus" id="context-menus">
+      <?gmfgen generated="true"?>
+      <!-- menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=">
+      </menuContribution>
+      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=">
+      </menuContribution -->
+      <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <command commandId="ro.ubbcluj.cs.master.diagram.LoadResourceAction">
+            <visibleWhen>
+               <and>
+                  <with variable="activePartId"><equals value="interlocking.diagram.part.InterlockingDiagramEditorID"/></with>
+                  <with variable="selection"><iterate ifEmpty="false"> 
+                     <instanceof value="interlocking.diagram.edit.parts.InterlockingEditPart"/>
+                  </iterate></with>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+
+   <extension point="org.eclipse.ui.commands" id="menu-commands">
+      <?gmfgen generated="true"?>
+      <category id="interlocking.diagram.part.InterlockingDiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
+      <command id="ro.ubbcluj.cs.master.diagram.LoadResourceAction"
+         name="Load Resource"
+         categoryId="interlocking.diagram.part.InterlockingDiagramEditorID"
+         defaultHandler="interlocking.diagram.part.LoadResourceAction"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.handlers" id="menu-handlers">
+      <?gmfgen generated="true"?>
+   </extension>
+
+   <!-- optionally, specify keybindings -->
+</plugin>
